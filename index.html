@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Spline+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#2a2a2a",
+                        "secondary": "#ecb2ff",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary": "#053900",
+                        "background": "#131313",
+                        "on-secondary-fixed": "#320047",
+                        "tertiary-fixed-dim": "#2ae500",
+                        "secondary-container": "#cf5cff",
+                        "secondary-fixed": "#f8d8ff",
+                        "on-secondary": "#520071",
+                        "outline": "#988e90",
+                        "surface-variant": "#353535",
+                        "surface-dim": "#131313",
+                        "on-primary-fixed-variant": "#474747",
+                        "primary-fixed-dim": "#c6c6c6",
+                        "surface-bright": "#393939",
+                        "on-secondary-container": "#480063",
+                        "surface-container-low": "#1b1b1b",
+                        "surface-container": "#1f1f1f",
+                        "on-error": "#690005",
+                        "primary": "#c6c6c6",
+                        "inverse-primary": "#5e5e5e",
+                        "error": "#ffb4ab",
+                        "error-container": "#93000a",
+                        "tertiary-fixed": "#79ff5b",
+                        "surface-container-highest": "#353535",
+                        "on-primary": "#303030",
+                        "on-tertiary-fixed": "#022100",
+                        "on-tertiary-container": "#168800",
+                        "surface": "#131313",
+                        "surface-tint": "#c6c6c6",
+                        "outline-variant": "#4c4546",
+                        "tertiary": "#2ae500",
+                        "tertiary-container": "#000000",
+                        "on-secondary-fixed-variant": "#74009f",
+                        "on-tertiary-fixed-variant": "#095300",
+                        "on-background": "#e2e2e2",
+                        "inverse-on-surface": "#303030",
+                        "secondary-fixed-dim": "#ecb2ff",
+                        "on-surface-variant": "#cfc4c5",
+                        "inverse-surface": "#e2e2e2",
+                        "primary-fixed": "#e2e2e2",
+                        "on-surface": "#e2e2e2",
+                        "on-primary-container": "#757575",
+                        "on-primary-fixed": "#1b1b1b",
+                        "on-error-container": "#ffdad6",
+                        "primary-container": "#000000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "xl": "80px",
+                        "md": "24px",
+                        "xs": "4px",
+                        "lg": "48px",
+                        "gutter": "24px",
+                        "sm": "12px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "h1": ["Space Grotesk"],
+                        "h2": ["Space Grotesk"],
+                        "label-caps": ["Space Grotesk"],
+                        "body-lg": ["Spline Sans"],
+                        "body-md": ["Spline Sans"],
+                        "h3": ["Space Grotesk"]
+                    },
+                    "fontSize": {
+                        "h1": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "h2": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+                        "label-caps": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "body-lg": ["20px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "h3": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .neon-purple-glow {
+            box-shadow: 0 0 40px -10px rgba(207, 92, 255, 0.4);
+        }
+        .neon-green-glow {
+            box-shadow: 0 0 40px -10px rgba(42, 229, 0, 0.3);
+        }
+        .text-gradient-primary {
+            background: linear-gradient(to right, #cf5cff, #ecb2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .text-gradient-gold {
+            background: linear-gradient(to right, #ffd700, #ffec8b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: 0;
+            opacity: 0.4;
+        }
+        .gold-shine {
+            animation: shine 3s ease-in-out infinite;
+        }
+        @keyframes shine {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6)) drop-shadow(0 0 20px rgba(255, 215, 0, 0.4)); }
+            50% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 40px rgba(255, 215, 0, 0.6)); }
+        }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        .rotate-180 { transform: rotate(180deg); }
+        @keyframes pulse-urgent {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .urgent-pulse {
+            animation: pulse-urgent 1s ease-in-out infinite;
+        }
+        @keyframes scrollImages {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes slideImages {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .auto-scroll {
+            animation: scrollImages 15s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-secondary selection:text-on-secondary">
+
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(168,85,247,0.2)]">
+<div class="flex justify-between items-center px-6 md:px-8 h-14 max-w-full mx-auto">
+<div class="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 font-['Space_Grotesk'] tracking-tighter uppercase">
+    EBOOK_X_META
+</div>
+<div class="hidden md:flex items-center gap-6 md:gap-8 font-['Space_Grotesk'] font-bold tracking-tighter uppercase text-sm">
+<a class="nav-link text-white/60 hover:text-pink-400 transition-all duration-300 px-2 py-1" href="#hero">Inicio</a>
+<a class="nav-link text-white/60 hover:text-pink-400 transition-all duration-300 px-2 py-1" href="#metodo">The Method</a>
+<a class="nav-link text-white/60 hover:text-pink-400 transition-all duration-300 px-2 py-1" href="#modulos">Módulos</a>
+<a class="nav-link text-white/60 hover:text-pink-400 transition-all duration-300 px-2 py-1" href="#resultados">Resultados</a>
+<a class="nav-link text-white/60 hover:text-pink-400 transition-all duration-300 px-2 py-1" href="#precio">Precio</a>
+</div>
+<a href="https://wa.me/5491170614169?text=Hola%21%20Quiero%20comprar%20el%20curso%20EBOOK_X_META.%20Mi%20nombre%20es%20..." class="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-['Space_Grotesk'] font-bold tracking-tighter px-4 md:px-6 py-1.5 md:py-2 rounded-full hover:scale-105 hover:shadow-[0_0_15px_rgba(34,211,238,0.5)] transition-all active:scale-95 duration-75 text-sm inline-block">
+    COMPRAR AHORA
+</a>
+</div>
+</nav>
+
+<!-- COUNTDOWN BAR -->
+<div class="fixed top-14 left-0 right-0 bg-gradient-to-r from-red-600 via-red-500 to-pink-500 text-white py-2 z-30 text-center font-bold text-sm md:text-base shadow-lg">
+    <span class="inline-flex items-center gap-2">
+        ⚡ <span id="cupos">12</span> CUPOS DISPONIBLES
+        <span class="hidden md:inline">|</span>
+        <span class="hidden md:inline">⏰</span>
+        <span class="hidden md:inline">Oferta en:</span> <span id="countdown">29:59</span>
+    </span>
+</div>
+
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center pt-28 overflow-hidden px-8 lg:px-xl" id="hero">
+<!-- Background Orbs -->
+<div class="orb w-[500px] h-[500px] bg-secondary-container -top-20 -left-20"></div>
+<div class="orb w-[400px] h-[400px] bg-tertiary-fixed -bottom-20 -right-20"></div>
+<div class="relative z-10 max-w-container-max mx-auto w-full grid lg:grid-cols-2 gap-lg items-center">
+<div class="space-y-lg pt-8">
+<div class="inline-flex items-center gap-sm px-4 py-1 rounded-full bg-surface-container-high border border-white/10">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span class="font-label-caps text-tertiary text-xs">CURSO ACTUALIZADO 2026</span>
+</div>
+<h1 class="font-h1 text-h1 text-white">
+    GENERA TUS PRIMEROS <span class="text-gradient-gold gold-shine">$1,000</span> DÓLARES creando y vendiendo tu ebook en solo 7 días
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+    Transforma tu conocimiento en ingresos reales y empieza a construir tu negocio digital desde cero, sin complicaciones.
+</p>
+<div class="flex flex-wrap gap-md">
+<a href="https://wa.me/5491170614169?text=Hola%21%20Quiero%20comprar%20el%20curso%20EBOOK_X_META.%20Mi%20nombre%20es%20..." class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-xl py-lg rounded-xl font-h3 text-xl hover:shadow-[0_0_30px_rgba(207,92,255,0.6)] transition-all transform hover:-translate-y-1 inline-block">
+    QUIERO MI EBOOK VIRAL
+</a>
+<div class="flex items-center gap-sm">
+<div class="flex -space-x-3">
+<img class="w-10 h-10 rounded-full border-2 border-background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZUPbuTAwWmeAB122L1q70K59Zjmbso6IyXkJs_LnzSKFyEW7q35vemISfzD3PDRCr4mbDJCxttlxX_7KJBkzIZtuPnrjD9VP8DqrcynwL8r6QrH2z8yj_mmrzkrp8OlnFAjnodJRQUVe0k9nEyYaNEdozUZfiQED7swAjAb5dwldVXK0WUNVYZH4dZhxGHxFkk--HBCDGEJUr3iyIXsu7kfqyzIzX78pDldEtwj0WreNFwy7D9oXofQeIMsj9zfWFzgqtSV2OZgI"/>
+<img class="w-10 h-10 rounded-full border-2 border-background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5v_HnnlPeAlfCmQ7EH4mw4D6mIbGYZtdP1Ot29Zdlvkjjn4IVcEklMmGfzjTIhH4ikCA88xGtAOptUxS2wcXdcEEagCOdpF9JkyRkGg_AmDLW9kploHk_QZMWgsSjLUQmrHZPlZHOkoOi_dGbH3oQxLBMkhtzeggCG13mlY2rmWsGu4xD8pH6zLi4jjmIhtnb3V6GQ3mO4ff68Of-4trT8xKz6PYylypYNiCkJeFJnOTHh55f765j-2g51mfXggpVnCnWwdKB--M"/>
+<img class="w-10 h-10 rounded-full border-2 border-background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkGClVQje3sQSYUe9Pyk5U51wEq3z7qOPMsjvYftsm2HlazK8fXYCVthqqtHVW1mRec43N8SPSDMA7EdxJ0TLQdaXIIQhLN-RWAafin4-czs8HxGFQqRg50JOgiOEf7bJHlWNwWDVNu7HGnhLsytDUApPlCG1J2RabG11K5nQpOJyAyUzBCIwlg3A8MdJnAM2u7a1b4t2ESgV7nOtHva0GBFDKh6hZImvHbl0uxtl4Vm7yRTaIfbhxW2jm1a_QOR9Rwp3WRuumGOE"/>
+</div>
+<div class="text-sm font-label-caps text-on-surface-variant">
+    +2,400 ESTUDIANTES ACTIVOS
+</div>
+</div>
+</div>
+</div>
+<div class="relative flex justify-center items-center">
+<div class="relative z-10 w-full max-w-md glass-card p-2 rounded-3xl neon-purple-glow overflow-hidden border border-purple-500/30">
+<img class="w-full rounded-2xl shadow-2xl" src="ebook-previews.jpeg" alt="Vista previa del ebook">
+</div>
+<div class="absolute -z-10 w-full h-full bg-secondary-container blur-[100px] opacity-20"></div>
+</div>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="py-xl px-8 lg:px-xl relative" id="metodo">
+<div class="max-w-container-max mx-auto">
+<div class="mb-lg space-y-sm">
+<h2 class="font-h2 text-h2 text-white text-center">EL SISTEMA <span class="text-tertiary">ULTRA</span> RÁPIDO</h2>
+<p class="text-center font-body-lg text-on-surface-variant max-w-2xl mx-auto">Dos pilares fundamentales diseñados para la máxima conversión y escalabilidad sin fricción.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md h-full">
+<!-- Bento Item 1 -->
+<div class="md:col-span-2 glass-card p-lg rounded-[2rem] flex flex-col justify-between overflow-hidden relative group">
+<div class="relative z-10">
+<div class="bg-secondary/20 w-fit p-3 rounded-xl mb-md">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">book</span>
+</div>
+<h3 class="font-h3 text-h3 text-white mb-md">Busqueda de un producto viral ganador</h3>
+<p class="text-on-surface-variant max-w-md">Aprende a identificar y validar productos digitales con alta demanda que se venden solos.</p>
+</div>
+<div class="absolute bottom-0 right-0 w-2/3 h-48 bg-gradient-to-t from-secondary/20 to-transparent rounded-tl-3xl"></div>
+</div>
+<!-- Bento Item 2 -->
+<div class="glass-card p-lg rounded-[2rem] border-tertiary/20 flex flex-col justify-between group">
+<div>
+<div class="bg-tertiary/20 w-fit p-3 rounded-xl mb-md">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+</div>
+<h3 class="font-h3 text-h3 text-white mb-md">Crear y modelar el producto con IAs</h3>
+<p class="text-on-surface-variant">Usa herramientas de inteligencia artificial para crear tu producto digital en tiempo récord sin ser experto.</p>
+</div>
+</div>
+<!-- Bento Item 3 -->
+<div class="glass-card p-lg rounded-[2rem] flex flex-col group">
+<div class="bg-secondary-container/20 w-fit p-3 rounded-xl mb-md">
+<span class="material-symbols-outlined text-secondary-container" style="font-variation-settings: 'FILL' 1;">campaign</span>
+</div>
+<h3 class="font-h3 text-h3 text-white mb-md">Subir el producto en redes y plataformas</h3>
+<p class="text-on-surface-variant mb-md">Publica en marketplaces y plataformas especializadas que generan tráfico qualifié para ventas.</p>
+</div>
+<!-- Bento Item 4 -->
+<div class="md:col-span-2 glass-card p-lg rounded-[2rem] flex items-center gap-lg bg-gradient-to-br from-surface-container to-background border-pink-500/10">
+<div class="flex-1">
+<h3 class="font-h3 text-h3 text-white mb-md">Aprende y crea tu primera campaña en Meta Ads</h3>
+<p class="text-on-surface-variant">Domina Facebook Ads desde cero y genera ventas automáticas sin depender de seguidores.</p>
+</div>
+<div class="hidden sm:block w-1/3 h-full rounded-2xl overflow-hidden shadow-2xl">
+<div class="w-full h-full bg-gradient-to-br from-purple-500/30 to-pink-500/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-white/50 text-6xl">ads_click</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Para quién es -->
+<section class="py-xl px-8 lg:px-xl relative" id="modulos">
+<div class="max-w-container-max mx-auto">
+<h2 class="font-h2 text-h2 text-white text-center mb-lg">¿PARA QUIÉN ES <span class="text-tertiary">ESTE CURSO</span>?</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="glass-card p-lg rounded-2xl border-l-4 border-l-tertiary">
+<h3 class="font-h3 text-tertiary mb-md">✅ SÍ ES PARA TI:</h3>
+<ul class="space-y-sm">
+<li class="flex items-center gap-sm"><span class="material-symbols-outlined text-tertiary">check_circle</span><span class="text-on-surface">Quieres vender productos digitales</span></li>
+<li class="flex items-center gap-sm"><span class="material-symbols-outlined text-tertiary">check_circle</span><span class="text-on-surface">Quieres generar ingresos con Meta Ads</span></li>
+<li class="flex items-center gap-sm"><span class="material-symbols-outlined text-tertiary">check_circle</span><span class="text-on-surface">Tienes ideas pero no sabes venderlas</span></li>
+<li class="flex items-center gap-sm"><span class="material-symbols-outlined text-tertiary">check_circle</span><span class="text-on-surface">Buscas un sistema escalable</span></li>
+<li class="flex items-center gap-sm"><span class="material-symbols-outlined text-tertiary">check_circle</span><span class="text-on-surface">Quieres dejar de depender de lo orgánico</span></li>
+</ul>
+</div>
+<div class="glass-card p-lg rounded-2xl border-l-4 border-l-error">
+<h3 class="font-h3 text-error mb-md">🚫 NO ES PARA TI:</h3>
+<ul class="space-y-sm">
+<li class="flex items-center gap-sm"><span class="material-symbols-outlined text-error">cancel</span><span class="text-on-surface">Buscas dinero rápido sin hacer nada</span></li>
+<li class="flex items-center gap-sm"><span class="material-symbols-outlined text-error">cancel</span><span class="text-on-surface">No quieres aprender marketing</span></li>
+<li class="flex items-center gap-sm"><span class="material-symbols-outlined text-error">cancel</span><span class="text-on-surface">No usarás publicidad pagada</span></li>
+<li class="flex items-center gap-sm"><span class="material-symbols-outlined text-error">cancel</span><span class="text-on-surface">Quiere resultados sin acción</span></li>
+<li class="flex items-center gap-sm"><span class="material-symbols-outlined text-error">cancel</span><span class="text-on-surface">No tiene presupuesto mínimo para ads</span></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Resultados Section -->
+<section class="py-xl px-4 lg:px-xl relative bg-surface-container-low" id="resultados">
+<div class="max-w-container-max mx-auto">
+<h2 class="font-h2 text-h2 text-white text-center mb-lg">RESULTADOS <span class="text-tertiary">REALES</span></h2>
+<p class="text-center font-body-lg text-on-surface-variant max-w-2xl mx-auto mb-xl">De emprendedores como tú que tomaron la decisión y empezaron a generar ingresos.</p>
+<div class="overflow-hidden py-2">
+<div class="flex gap-2 justify-center items-center" style="width: max-content; animation: slideImages 30s linear infinite;">
+<div class="w-40 sm:w-48 md:w-56 rounded-lg overflow-hidden flex-shrink-0">
+<img src="assets/imagen1.jpeg" alt="Pago 1" class="w-full h-auto max-h-48 object-contain">
+</div>
+<div class="w-40 sm:w-48 md:w-56 rounded-lg overflow-hidden flex-shrink-0">
+<img src="assets/imagen2.jpeg" alt="Pago 2" class="w-full h-auto max-h-48 object-contain">
+</div>
+<div class="w-40 sm:w-48 md:w-56 rounded-lg overflow-hidden flex-shrink-0">
+<img src="assets/imagen3.jpeg" alt="Pago 3" class="w-full h-auto max-h-48 object-contain">
+</div>
+<div class="w-40 sm:w-48 md:w-56 rounded-lg overflow-hidden flex-shrink-0">
+<img src="assets/imagen4.jpeg" alt="Pago 4" class="w-full h-auto max-h-48 object-contain">
+</div>
+<div class="w-40 sm:w-48 md:w-56 rounded-lg overflow-hidden flex-shrink-0">
+<img src="assets/imagen5.jpeg" alt="Pago 5" class="w-full h-auto max-h-48 object-contain">
+</div>
+<div class="w-40 sm:w-48 md:w-56 rounded-lg overflow-hidden flex-shrink-0">
+<img src="assets/imagen6.jpeg" alt="Pago 6" class="w-full h-auto max-h-48 object-contain">
+</div>
+<div class="w-40 sm:w-48 md:w-56 rounded-lg overflow-hidden flex-shrink-0">
+<img src="assets/imagen7.jpeg" alt="Pago 7" class="w-full h-auto max-h-48 object-contain">
+</div>
+<div class="w-40 sm:w-48 md:w-56 rounded-lg overflow-hidden flex-shrink-0">
+<img src="assets/imagen8.jpeg" alt="Pago 8" class="w-full h-auto max-h-48 object-contain">
+</div>
+<div class="w-40 sm:w-48 md:w-56 rounded-lg overflow-hidden flex-shrink-0">
+<img src="assets/imagen9.jpeg" alt="Pago 9" class="w-full h-auto max-h-48 object-contain">
+</div>
+<!-- Duplicar para loop sin espacios -->
+<div class="w-40 sm:w-48 md:w-56 rounded-lg overflow-hidden flex-shrink-0">
+<img src="assets/imagen1.jpeg" alt="Pago 1" class="w-full h-auto max-h-48 object-contain">
+</div>
+<div class="w-40 sm:w-48 md:w-56 rounded-lg overflow-hidden flex-shrink-0">
+<img src="assets/imagen2.jpeg" alt="Pago 2" class="w-full h-auto max-h-48 object-contain">
+</div>
+<div class="w-40 sm:w-48 md:w-56 rounded-lg overflow-hidden flex-shrink-0">
+<img src="assets/imagen3.jpeg" alt="Pago 3" class="w-full h-auto max-h-48 object-contain">
+</div>
+<div class="w-40 sm:w-48 md:w-56 rounded-lg overflow-hidden flex-shrink-0">
+<img src="assets/imagen4.jpeg" alt="Pago 4" class="w-full h-auto max-h-48 object-contain">
+</div>
+<div class="w-40 sm:w-48 md:w-56 rounded-lg overflow-hidden flex-shrink-0">
+<img src="assets/imagen5.jpeg" alt="Pago 5" class="w-full h-auto max-h-48 object-contain">
+</div>
+<div class="w-40 sm:w-48 md:w-56 rounded-lg overflow-hidden flex-shrink-0">
+<img src="assets/imagen6.jpeg" alt="Pago 6" class="w-full h-auto max-h-48 object-contain">
+</div>
+<div class="w-40 sm:w-48 md:w-56 rounded-lg overflow-hidden flex-shrink-0">
+<img src="assets/imagen7.jpeg" alt="Pago 7" class="w-full h-auto max-h-48 object-contain">
+</div>
+<div class="w-40 sm:w-48 md:w-56 rounded-lg overflow-hidden flex-shrink-0">
+<img src="assets/imagen8.jpeg" alt="Pago 8" class="w-full h-auto max-h-48 object-contain">
+</div>
+<div class="w-40 sm:w-48 md:w-56 rounded-lg overflow-hidden flex-shrink-0">
+<img src="assets/imagen9.jpeg" alt="Pago 9" class="w-full h-auto max-h-48 object-contain">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Precio Section -->
+<section class="py-xl px-8 lg:px-xl relative" id="precio">
+<div class="max-w-container-max mx-auto text-center mb-xl">
+<h2 class="font-h2 text-h2 text-white mb-sm">OFERTA <span class="text-gradient-primary">IRRESISTIBLE</span></h2>
+<div class="inline-flex items-center gap-3 px-4 py-2 bg-red-500/20 border border-red-500/40 rounded-full">
+<span class="text-red-400 font-bold text-lg">🔥 SOLO <span id="cuposPricing">12</span> CUPOS</span>
+<span class="text-white/50">•</span>
+<span class="text-white font-bold">⏰ <span id="countdownPricing">29:59</span></span>
+</div>
+</div>
+</div>
+<div class="max-w-md mx-auto relative">
+<div class="absolute -inset-2 bg-gradient-to-r from-purple-500 via-pink-500 to-tertiary blur-2xl opacity-20 animate-pulse"></div>
+<div class="relative glass-card p-xl rounded-[2.5rem] border-white/20 text-center">
+<div class="text-on-surface-variant font-label-caps mb-md line-through">VALOR TOTAL: $350 USD</div>
+<div class="flex items-center justify-center gap-sm mb-lg">
+<span class="text-h2 font-h2 text-white">$20</span>
+<span class="text-xl text-on-surface-variant">USD</span>
+</div>
+<ul class="text-left space-y-md mb-xl">
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-tertiary">check_circle</span>
+<span>3 Módulos + 1 Módulo Sorpresa</span>
+</li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-tertiary">check_circle</span>
+<span>Acceso de por vida al curso</span>
+</li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-tertiary">check_circle</span>
+<span>Soporte y comunidad en grupo privado</span>
+</li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-tertiary">check_circle</span>
+<span>Recursos y regalos exclusivos</span>
+</li>
+</ul>
+<a href="https://wa.me/5491170614169?text=Hola%21%20Quiero%20comprar%20el%20curso%20EBOOK_X_META.%20Mi%20nombre%20es%20..." class="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-lg rounded-2xl font-h3 text-xl hover:shadow-[0_0_40px_rgba(207,92,255,0.8)] transition-all transform hover:scale-[1.02] inline-block text-center block">
+    QUIERO EMPEZAR YA
+</a>
+<div class="mt-md flex items-center justify-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">lock</span>
+<span class="text-xs font-label-caps uppercase tracking-widest">PAGO 100% SEGURO Y ENCRIPTADO</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Guía de Regalos -->
+<section class="py-xl px-8 relative bg-surface-container">
+<div class="max-w-container-max mx-auto">
+<h2 class="font-h2 text-h2 text-white text-center mb-lg">🎁 <span class="text-gradient-primary text-4xl">BONUS EXCLUSIVOS</span></h2>
+<p class="text-center text-on-surface-variant mb-lg">3 guías gratis que complementan el curso</p>
+<div class="flex justify-center gap-md flex-wrap">
+<div class="glass-card min-w-[240px] p-6 rounded-2xl border border-secondary/30 flex-shrink-0 text-center hover:border-secondary/60 transition-all">
+<span class="material-symbols-outlined text-secondary text-4xl mb-3">lightbulb</span>
+<h4 class="font-h3 text-white mb-2">Prompts de Nichos</h4>
+<p class="text-sm text-on-surface-variant"> Para Productos Extranjeros Virales</p>
+</div>
+<div class="glass-card min-w-[240px] p-6 rounded-2xl border border-secondary/30 flex-shrink-0 text-center hover:border-secondary/60 transition-all">
+<span class="material-symbols-outlined text-secondary text-4xl mb-3">psychology</span>
+<h4 class="font-h3 text-white mb-2">Generador de Contenido</h4>
+<p class="text-sm text-on-surface-variant"> Con Inteligencia Artificial</p>
+</div>
+<div class="glass-card min-w-[240px] p-6 rounded-2xl border border-secondary/30 flex-shrink-0 text-center hover:border-secondary/60 transition-all">
+<span class="material-symbols-outlined text-secondary text-4xl mb-3">auto_awesome</span>
+<h4 class="font-h3 text-white mb-2">Prompts Efectivos</h4>
+<p class="text-sm text-on-surface-variant"> Para IA's que realmente funcionan</p>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="py-xl bg-surface-container-low">
+<div class="max-w-3xl mx-auto px-8">
+<h2 class="font-h3 text-h2 text-center text-white mb-xl">PREGUNTAS FRECUENTES</h2>
+<div class="space-y-md">
+<div class="glass-card p-md rounded-2xl">
+<button onclick="toggleFaq(this)" class="w-full flex justify-between items-center text-left font-bold text-white">
+<span>¿Necesito experiencia previa?</span>
+<span class="material-symbols-outlined transition-transform">expand_more</span>
+</button>
+<div class="hidden mt-4 text-on-surface-variant">
+No, el curso está diseñado desde cero. Te explico todo paso a paso.
+</div>
+</div>
+<div class="glass-card p-md rounded-2xl">
+<button onclick="toggleFaq(this)" class="w-full flex justify-between items-center text-left font-bold text-white">
+<span>¿Necesito seguidores?</span>
+<span class="material-symbols-outlined transition-transform">expand_more</span>
+</button>
+<div class="hidden mt-4 text-on-surface-variant">
+No. El sistema usa Meta Ads, no tráfico orgánico. No necesitas audiencia.
+</div>
+</div>
+<div class="glass-card p-md rounded-2xl">
+<button onclick="toggleFaq(this)" class="w-full flex justify-between items-center text-left font-bold text-white">
+<span>¿Cuánto presupuesto necesito para Ads?</span>
+<span class="material-symbols-outlined transition-transform">expand_more</span>
+</button>
+<div class="hidden mt-4 text-on-surface-variant">
+Puedes empezar con $5-10/día. El curso enseña cómo optimizar con presupuesto bajo.
+</div>
+</div>
+<div class="glass-card p-md rounded-2xl">
+<button onclick="toggleFaq(this)" class="w-full flex justify-between items-center text-left font-bold text-white">
+<span>¿Funciona en cualquier nicho?</span>
+<span class="material-symbols-outlined transition-transform">expand_more</span>
+</button>
+<div class="hidden mt-4 text-on-surface-variant">
+Sí, siempre que haya demanda. El sistema es universal.
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-black w-full py-16 border-t border-purple-500/20 font-['Space_Grotesk']">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 gap-8 max-w-container-max mx-auto">
+<div class="text-xl font-black text-white">EBOOK_X_META</div>
+<div class="flex flex-wrap justify-center gap-lg">
+<a class="text-white/30 text-[10px] tracking-[0.2em] font-medium uppercase hover:text-pink-500 transition-colors" href="#">Términos</a>
+<a class="text-white/30 text-[10px] tracking-[0.2em] font-medium uppercase hover:text-pink-500 transition-colors" href="#">Privacidad</a>
+<a class="text-white/30 text-[10px] tracking-[0.2em] font-medium uppercase hover:text-pink-500 transition-colors" href="#">Contacto</a>
+</div>
+<div class="text-green-400 dark:text-green-300 text-[10px] tracking-[0.2em] font-medium uppercase text-center md:text-right">
+    © 2026 EBOOK_X_META. TODOS LOS DERECHOS RESERVADOS.
+</div>
+</div>
+</footer>
+
+<script>
+    // Countdown + Cupos
+    let tiempo = 30 * 60;
+    let cupos = 12;
+    const countdownEl = document.getElementById('countdown');
+    const cuposEl = document.getElementById('cupos');
+    
+    function actualizarCountdown() {
+        const minutos = Math.floor(tiempo / 60);
+        const segundos = tiempo % 60;
+        countdownEl.textContent = `${minutos}:${segundos.toString().padStart(2, '0')}`;
+        
+        const countdownPricing = document.getElementById('countdownPricing');
+        if (countdownPricing) {
+            countdownPricing.textContent = `${minutos}:${segundos.toString().padStart(2, '0')}`;
+        }
+        
+        if (tiempo > 0) {
+            tiempo--;
+        } else {
+            tiempo = 30 * 60;
+        }
+    }
+    
+    function actualizarCupos() {
+        if (cupos > 0) {
+            cuposEl.textContent = cupos;
+            cupos--;
+        } else {
+            // Reiniciar cupos después de 30 segundos
+            cupos = 12;
+        }
+        
+        // Actualizar cupos en pricing
+        const cuposPricing = document.getElementById('cuposPricing');
+        if (cuposPricing) {
+            cuposPricing.textContent = cupos;
+        }
+    }
+    
+    setInterval(actualizarCountdown, 1000);
+    setInterval(actualizarCupos, 30000); // Baja un cupo cada 30 segundos
+    actualizarCountdown();
+    actualizarCupos();
+
+    // Carousel scroll
+    function scrollCarousel(direction) {
+        const carousel = document.getElementById('carousel');
+        const cardWidth = 320;
+        carousel.scrollBy({ left: cardWidth * direction, behavior: 'smooth' });
+    }
+
+    // FAQ toggle
+    function toggleFaq(btn) {
+        const answer = btn.nextElementSibling;
+        const icon = btn.querySelector('.material-symbols-outlined');
+        answer.classList.toggle('hidden');
+        icon.classList.toggle('rotate-180');
+    }
+
+    // Scroll spy para navbar
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (window.scrollY >= sectionTop - 200) {
+                current = section.getAttribute('id');
+            }
+        });
+        navLinks.forEach(link => {
+            link.classList.remove('text-pink-500', 'border-b-2', 'border-pink-500');
+            link.classList.add('text-white/60');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.remove('text-white/60');
+                link.classList.add('text-pink-500', 'border-b-2', 'border-pink-500');
+            }
+        });
+    });
+</script>
+</body></html>
